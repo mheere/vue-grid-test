@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="shortcut icon" type="image/png" href="./favicon.ico"/>
+	<title>Vue-Grid</title>
+</head>
+<body>
+	
+	<div class='flex-nested-start'>
+		<div class='flex-parent-col top-main'>
+
+			<div class='under-dev'>vue-grid-advanced  <span class='ud'>[under development]</span></div>
+			<div class='under-dev2'>many more features to come...</div>
+			<div class='x-top'>
+				<button id='btnGroup1' title="group by 'currency'">Group 1</button>
+				<button id='btnGroup2' title="group by 'currency' and 'county'">Group 2</button>
+				<button id='btnUnGroup10'>UnGroup</button>
+				<button id='btn5'>5 rows</button>
+				<button id='btn30'>30 rows</button>
+				<button id='btn8000'>8000 rows</button>
+				<button id='btnSelectCode5' title="select row where code='Code5'">Select Code5</button>
+				<button id='btnClearRows'>Clear Rows</button>
+				<button id='btnUpdateRow' title="set county='london' and valuation='9010.55'">Update Row</button>
+				<button id='btnUpdateCell' title="set county='essex'">Update Cell</button>
+			</div>
+
+			<div class='flex-child x-main test-grid-1'>
+			</div>
+
+		</div>
+	</div>
+	
+	<script src='./init.js'></script>
+	<!-- <script src='./init_samples.js'></script> -->
+
+	<style>
+		.top-main {
+			background: #848484;
+		}
+		.x-top {
+			background-color: #b9b9b98f;
+		}
+		.under-dev {
+			color: white;
+			padding: 20px;
+			margin: 0px 20px 0px 20px;
+			font-size: 25px;
+			font-weight: bold;
+			text-align: center;
+		}
+		.under-dev .ud {
+			font-size: 15px;
+			font-weight: bold;
+			color: #d3ff50;
+		}
+		.under-dev2 {
+			background: #a2a2a2;
+			color: white;
+			padding: 10px;
+			font-size: 19px;
+			font-weight: bold;
+			text-align: center;
+			border: 10px solid #a2a2a2;
+		}
+	</style>
+</body>
+</html>
