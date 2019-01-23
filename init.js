@@ -54,7 +54,7 @@ var createGrid = () => {
 	// when the grid is fully constructed (and the the creation call is completed)
 	settings.createdGridStructure = (grid) => {
 		setData(30);
-		vgrid.setGroupColumns(['currency', 'county']);
+		grid.setGroupColumns(['currency', 'county']);
 	}
 
 	// allow for some custom styling...
@@ -131,8 +131,8 @@ xx('btn8000', () => setData(8000));
 xx('btnSelectCode5', () => vgrid.findAndSelect('Code5', 'code'));
 //xx('btnCreateGrid', () => createGrid());
 xx('btnClearRows', () => setData(0));
-//xx('btnDestroyGrid', () => grid.destroy());
-//xx('btnGetSettings', () => _col_settings = grid.getSettings());
+//xx('btnDestroyGrid', () => vgrid.destroy());
+//xx('btnGetSettings', () => _col_settings = vgrid.getSettings());
 xx('btnGroup1', () => vgrid.setGroupColumns(['currency']));
 xx('btnGroup2', () => vgrid.setGroupColumns(['currency', 'county']));
 xx('btnUnGroup10', () => vgrid.setGroupColumns([]));
