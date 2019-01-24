@@ -140,7 +140,8 @@ xx('btnUnGroup10', () => vgrid.setGroupColumns([]));
 
 
 xx('btnUpdateCell', () => {
-	let info = UpdateRowInfo.createSingleCell("Code8", "county", "Essex");
+	let row = vgrid.getCurrentRow();
+	let info = UpdateRowInfo.updateSingleCell(row.code, "county", "Essex");
 	vgrid.updateData(info);
 });
 
@@ -150,7 +151,7 @@ xx('btnUpdateRow', () => {
 	row.county = "London";
 	row.price = 915.25;
 
-	let info = UpdateRowInfo.createFromRow(row);
+	let info = UpdateRowInfo.updateRow(row);
 	vgrid.updateData(info);
 });
 
