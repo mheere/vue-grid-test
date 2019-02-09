@@ -2,7 +2,6 @@
 	"name": "v-g-a-test",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
 	"scripts": {},
 	"keywords": [],
 	"author": "",
@@ -10,9 +9,10 @@
 	"dependencies": {
 		"moment": "^2.23.0",
 		"ramda": "^0.26.1",
-		"vue-grid-advanced": "0.0.3"
+		"vue-grid-advanced": "0.0.5"
 	},
 	"devDependencies": {
-		"cssnano": "^4.1.8"
+		"cssnano": "^4.1.8",
+		"typescript": "^3.3.3"
 	}
 }
