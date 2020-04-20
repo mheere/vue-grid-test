@@ -10,7 +10,7 @@ import { getColumns, createData, getRandomArrayEntry, HeaderInfo } from 'vue-gri
 // Lets create the grid
 // -----------------------------------------------------------------------
 
-let createGrid = function() {
+let createGrid = function () {
     // we ALWAYS start with defining the Grid Settings object
     let settings = new VGridSettings();
 
@@ -26,8 +26,8 @@ let createGrid = function() {
     let testFrozenLeft: boolean = true;
     let testFrozenRight: boolean = true;
     let testAggregates: boolean = true;
-    let showFirstHeaderVert: boolean = true;
-    let showSecondThirdHeaderRow: boolean = true;
+    let showFirstHeaderVert: boolean = false;
+    let showSecondThirdHeaderRow: boolean = false;
 
     settings.columns.find(c => c.dbName.isSame("test1")).width = 200;
     settings.columns.find(c => c.dbName.isSame("test2")).width = 200;
@@ -55,7 +55,7 @@ let createGrid = function() {
         // headerSamples = ["KK", "PP"];
         // settings.columns.forEach(c => c.headers.push(new HeaderInfo(getRandomArrayEntry(headerSamples), 50, "vert")));
     }
-    
+
 
     // spcify the column the grid can interpret to be the 'primary key' - this is returned
     // each time a selection(s) is made
@@ -63,7 +63,7 @@ let createGrid = function() {
     settings.idColumn = "code";
 
     // specify the currency lookup column (this specifies the code of the currency for that row)
-    settings.currencyLookupColumn = "currency";	
+    settings.currencyLookupColumn = "currency";
 
     // treat these columns to be formatted using the currencyLookupColumn
     settings.currencyColumns = ["price", "valuation"];
@@ -88,8 +88,9 @@ let createGrid = function() {
 
     // when the grid is fully constructed the given function is called back
     settings.createdGridStructure = (grid) => {
-        let tempData = createData(500);
+        let tempData = createData(50);
         grid.setData(tempData);
+        grid.setGroupColumns(['currency', 'county']);
     };
 
     settings.cellStyling = (style: CellStyleInfo) => {
@@ -106,37 +107,37 @@ let createGrid = function() {
                 style.backgroundColor = "rgb(97, 181, 61)";
                 style.color = "white";
             }
-            
+
             // change some actual text (Tom -> Tomsa)
             if (style.textDisplay == "Tom")
                 style.textDisplay = "Tomsa";
         }
 
         // flag all person over the age of 70 
-        if (col.dbName == "lastname" && row["age"] > 70 ) {
+        if (col.dbName == "lastname" && row["age"] > 70) {
             style.faImage = "flag";
             if (row["age"] > 85)
                 style.faImageColour = "red";
         }
 
         // if the column is the updown then interpret the data as the font-awesome image!
-        if (col.dbName == "img")  
+        if (col.dbName == "img")
             style.faImage = row["img"];
 
         // on the valuation cell I wish an indicator (up/down image)
-        if (col.dbName == "valuation")  {
+        if (col.dbName == "valuation") {
             let img = row["updown"] || "";  // bear in mind (sub)total rows will be undefined otherwise...
             style.faImage = img;
             style.faImageColour = img.contains("up") ? "green" : "red";
         }
-        
+
         // if one is below the age of 50 enable the checkbox
         if (col.dbName == "optIn") {
-            if (row["age"] < 50) 
+            if (row["age"] < 50)
                 style.canEdit = true;
-            if (row["age"] > 70) 
+            if (row["age"] > 70)
                 style.blankCell = true;
-                
+
         }
 
         // return the adjusted cell-style
@@ -160,13 +161,13 @@ let createGrid = function() {
 let vgrid;
 
 let setData = (count: number = 5000) => {
-	console.log('setData - init');
-  	let data = createData(count);
+    console.log('setData - init');
+    let data = createData(count);
     vgrid.setData(data);
 }
 
 let xx = (s, f) => {
-	document.getElementById(s).addEventListener("click", () => f());	
+    document.getElementById(s).addEventListener("click", () => f());
 }
 
 //xx('btnCreateGrid', () => createGrid());
@@ -185,17 +186,17 @@ xx('btnUnGroup10', () => vgrid.setGroupColumns([]));
 
 xx('btnUpdateCell', () => {
     let row = vgrid.getCurrentRow();
-	let info = UpdateRowInfo.updateSingleCell(row.code, "county", "Essex");
-	vgrid.updateData(info);
+    let info = UpdateRowInfo.updateSingleCell(row.code, "county", "Essex");
+    vgrid.updateData(info);
 });
 
 xx('btnUpdateRow', () => {
-	let row = vgrid.getCurrentRow();
-	row.valuation = 9010.55;
-	row.county = "London";
+    let row = vgrid.getCurrentRow();
+    row.valuation = 9010.55;
+    row.county = "London";
 
-	let info = UpdateRowInfo.updateRow(row);
-	vgrid.updateData(info);
+    let info = UpdateRowInfo.updateRow(row);
+    vgrid.updateData(info);
 });
 
 createGrid();
